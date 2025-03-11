@@ -1,0 +1,78 @@
+{
+    "paths": {
+        "model_dir": "saved_models",
+        "output_dir": "predictions",
+        "log_dir": "logs",
+        "data_cache_dir": "data_cache"
+    },
+    "training": {
+        "epochs": 100,
+        "batch_size": 32,
+        "learning_rate": 0.001,
+        "hidden_size": 256,
+        "num_layers": 3,
+        "sequence_length": 30,
+        "train_days": 365,
+        "validation_split": 0.2,
+        "reference_symbols": ["ETHUSDT", "BNBUSDT", "ADAUSDT", "XRPUSDT"]
+    },
+    "prediction": {
+        "create_visualization": true,
+        "prediction_days": 182,
+        "advanced_visualization": true,
+        "confidence_intervals": true,
+        "export_formats": ["png", "html", "csv", "json"]
+    },
+    "model": {
+        "dropout": 0.3,
+        "l2_reg": 1e-5,
+        "use_attention": true,
+        "graph_construction": "correlation",
+        "correlation_threshold": 0.5,
+        "graph_convolution_type": "standard",
+        "feature_categories": ["ohlcv", "technical", "futures"],
+        "use_dynamic_graph": false,
+        "dynamic_window_size": 30,
+        "dynamic_graph_method": "correlation",
+        "scaler_type": "minmax"
+    },
+    "features": {
+        "use_futures_data": true,
+        "use_open_interest": true,
+        "use_funding_rates": true,
+        "use_long_short_ratio": true,
+        "use_taker_buy_sell_ratio": true,
+        "use_order_book": false,
+        "use_advanced_features": true,
+        "handle_missing_data": true,
+        "use_perp_contracts_only": true,
+        "technicals": {
+            "use_all": true,
+            "moving_averages": true,
+            "oscillators": true,
+            "volatility": true,
+            "momentum": true
+        }
+    },
+    "binance_api": {
+        "rate_limit_pause": 0.5,
+        "default_interval": "1d",
+        "use_websockets": true,
+        "max_workers": 5,
+        "use_cache": true,
+        "cache_expiry": 3600
+    },
+    "advanced": {
+        "early_stopping": true,
+        "patience": 20,
+        "use_tensorboard": true,
+        "save_checkpoints": true,
+        "save_best_only": true,
+        "mixed_precision": false,
+        "gradient_clipping": 1.0,
+        "use_ensemble": false,
+        "ensemble_size": 3,
+        "monte_carlo_dropout": false,
+        "monte_carlo_samples": 100
+    }
+}
