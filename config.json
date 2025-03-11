@@ -37,15 +37,15 @@
         "scaler_type": "minmax"
     },
     "features": {
-        "use_futures_data": true,
-        "use_open_interest": true,
-        "use_funding_rates": true,
-        "use_long_short_ratio": true,
-        "use_taker_buy_sell_ratio": true,
+        "use_futures_data": false,
+        "use_open_interest": false,
+        "use_funding_rates": false,
+        "use_long_short_ratio": false,
+        "use_taker_buy_sell_ratio": false,
         "use_order_book": false,
-        "use_advanced_features": true,
+        "use_advanced_features": false,
         "handle_missing_data": true,
-        "use_perp_contracts_only": true,
+        "use_perp_contracts_only": false,
         "technicals": {
             "use_all": true,
             "moving_averages": true,
