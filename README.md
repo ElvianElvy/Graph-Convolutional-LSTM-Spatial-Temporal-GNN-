@@ -1,36 +1,54 @@
-# Enhanced Cryptocurrency Prediction with Graph Convolutional LSTM
+# Advanced Cryptocurrency Price Prediction System
 
-A comprehensive PyTorch-based system for predicting cryptocurrency prices using an advanced Graph Convolutional LSTM (Spatial-Temporal Graph Neural Network) model with expanded Binance API data integration. This application fetches historical and real-time data from Binance, including Open Interest, Funding Rates, and other futures market metrics, to model complex cryptocurrency relationships and generate accurate price forecasts for the next 6 months with enhanced visualization techniques.
+A comprehensive PyTorch-based system for predicting cryptocurrency prices using a state-of-the-art **Spatial-Temporal Graph Neural Network** (ST-GNN) model. This advanced implementation integrates real-time and historical data from Binance, including **futures market metrics** like Open Interest and Funding Rates, to generate accurate price forecasts for up to 6 months ahead with enhanced visualization capabilities.
 
-## Key Features
+![Prediction Visualization](https://raw.githubusercontent.com/yourusername/crypto-prediction/main/docs/images/prediction_sample.png)
 
-- **Advanced Graph Convolutional LSTM Architecture**: Implementation of a state-of-the-art Spatial-Temporal Graph Neural Network that captures both the temporal price patterns and spatial relationships between cryptocurrencies
-- **Comprehensive Binance Data Integration**: Incorporates a wide range of data sources including:
-  - OHLCV (Open, High, Low, Close, Volume) price data
-  - Open Interest (number of outstanding futures contracts)
+## 🚀 Features
+
+- **Spatial-Temporal Graph Neural Network Architecture**
+  - Models cryptocurrencies as nodes in a graph with edges representing market relationships
+  - Combines Graph Convolutional Networks (GCN) with LSTM to capture both spatial and temporal patterns
+  - Optional dynamic graph structure that evolves over time to capture changing market dynamics
+
+- **Comprehensive Binance Data Integration**
+  - OHLCV price and volume data for spot markets
+  - Open Interest (total outstanding futures contracts)
   - Funding Rates (periodic payments between long/short positions)
   - Long/Short Ratio (proportion of long vs short positions)
-  - Taker Buy/Sell Volume Ratio (ratio of aggressive buys vs sells)
-  - Order Book Depth (market depth information)
-- **Market Insight Analysis**: Models cryptocurrencies as nodes in a graph with edges representing their price correlations, allowing the model to capture market-wide trends and inter-cryptocurrency influences
-- **Real-time Data Integration**: Fetches data from Binance WebSocket API for the most up-to-date information
-- **Advanced Visualization**: Generates interactive and static visualizations of predictions with confidence intervals, trend analysis, and multi-dimensional market insights
-- **Flexible Feature Selection**: Easily configure which data sources and features to use in your model
-- **Interactive Mode**: User-friendly command-line interface for exploring available cryptocurrencies, training models, and generating predictions
-- **Modular Architecture**: Clean, maintainable codebase designed for a single engineer to understand and extend
+  - Taker Buy/Sell Volume Ratio (market sentiment indicator)
+  - Historical liquidation data
 
-## Key Advantages of Enhanced Data Approach
+- **Advanced Market Analysis**
+  - Cryptocurrency correlation networks with visualizations
+  - Inter-market influence detection
+  - Market regime identification
+  - Multi-timeframe technical indicators
 
-This implementation provides several advantages over the standard approach:
+- **Enhanced Visualization**
+  - Interactive Plotly-based dashboards
+  - Candlestick charts with prediction overlays
+  - Confidence interval bands
+  - Comparative performance visualization
+  - Market structure network graphs
 
-1. **Futures Market Insight**: Captures valuable signals from futures markets that are often leading indicators of price movements
-2. **Market Sentiment Capture**: Uses long/short ratios and funding rates to gauge market sentiment and positioning
-3. **Liquidity Understanding**: Open interest and order book data provide insights into market liquidity and depth
-4. **Improved Market Regime Detection**: Combination of spot and futures data helps identify different market regimes (trending, ranging, etc.)
-5. **Cross-Market Information Flow**: Graph structure allows information to flow between different cryptocurrencies, improving prediction accuracy
-6. **Enhanced Confidence Measures**: Multiple data sources enable better uncertainty quantification in predictions
+- **Flexible Configuration System**
+  - Feature selection (use any combination of data sources)
+  - Model architecture customization
+  - Training parameter optimization
+  - Prediction horizon adjustment
 
-## Installation
+## 📊 Performance Advantages
+
+This system offers significant advantages over traditional forecasting methods:
+
+1. **Cross-Market Information Flow**: Information flows between different cryptocurrencies through the graph structure
+2. **Futures Market Insight**: Captures valuable signals from futures markets that are leading indicators
+3. **Market Structure Understanding**: Models the complex relationships between different cryptocurrencies
+4. **Adaptive Prediction**: Dynamic graphs adapt to changing market conditions
+5. **Confidence Quantification**: Provides meaningful uncertainty estimates for predictions
+
+## 🔧 Installation
 
 ### Prerequisites
 
@@ -42,8 +60,8 @@ This implementation provides several advantages over the standard approach:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/crypto-graph-conv-lstm.git
-   cd crypto-graph-conv-lstm
+   git clone https://github.com/yourusername/crypto-prediction.git
+   cd crypto-prediction
    ```
 
 2. Create a virtual environment:
@@ -57,52 +75,44 @@ This implementation provides several advantages over the standard approach:
    pip install -r requirements.txt
    ```
 
-## Project Structure
+4. Create necessary directories:
+   ```bash
+   mkdir -p saved_models predictions data_cache logs analysis
+   ```
+
+## 🔍 Project Structure
 
 ```
-crypto-graph-conv-lstm/
+crypto-prediction/
 ├── config.py               # Configuration management
 ├── main.py                 # Main application entry point
-├── predict.py              # Prediction functionality
 ├── train.py                # Model training functionality
-├── example_usage.py        # Examples of using the system
-├── requirements.txt        # Project dependencies
-├── config.json             # Configuration file
+├── predict.py              # Prediction functionality
+├── binance_api_fix.py      # Patches for Binance API
+├── enable_dynamic_graph.py # Script to toggle dynamic graph mode
+├── run_with_futures.py     # Script to run with futures data enabled
+│
 ├── data/
-│   ├── binance_api.py      # Enhanced Binance API interface with futures data
-│   └── preprocessor.py     # Advanced data preprocessing and graph construction
+│   ├── __init__.py         # Package initialization
+│   ├── binance_api.py      # Enhanced Binance API interface
+│   └── preprocessor.py     # Data preprocessing and graph construction
+│
 ├── models/
-│   └── graph_conv_lstm.py  # Graph Convolutional LSTM implementation
+│   ├── __init__.py         # Package initialization
+│   └── graph_conv_lstm.py  # ST-GNN model implementation
+│
 ├── utils/
+│   ├── __init__.py         # Package initialization
 │   └── metrics.py          # Evaluation metrics
+│
 ├── saved_models/           # Directory for saved models
 ├── predictions/            # Directory for prediction outputs
+├── data_cache/             # Directory for cached API data
+├── logs/                   # Directory for training logs
 └── analysis/               # Directory for analysis outputs
 ```
 
-## Data Sources
-
-This enhanced version includes multiple data sources from Binance:
-
-### Spot Market Data
-- **OHLCV**: Traditional price and volume data
-- **Technical Indicators**: RSI, MACD, Bollinger Bands, etc.
-
-### Futures Market Data
-- **Open Interest**: Total number of outstanding futures contracts
-- **Funding Rates**: Periodic payments between long and short positions
-- **Long/Short Ratio**: Proportion of long vs short positions
-- **Taker Buy/Sell Ratio**: Ratio of aggressive buys vs sells
-- **Price Premium**: Difference between futures and spot price
-- **Liquidation Data**: Information about forced position closures
-
-### Derived Advanced Features
-- **Volatility Indicators**: Multiple measures of market volatility
-- **Momentum Metrics**: Price momentum across different timeframes
-- **Market Regime Indicators**: Composite indicators of market conditions
-- **Cross-market Metrics**: Relationships between different cryptocurrencies
-
-## Usage
+## 💻 Usage
 
 ### Interactive Mode
 
@@ -125,7 +135,7 @@ This will present a menu with options to:
 
 ### Command Line Options
 
-Train a new model with enhanced futures data:
+Train a new model:
 
 ```bash
 python main.py --train --symbol BTCUSDT
@@ -143,12 +153,6 @@ List available cryptocurrencies:
 python main.py --list
 ```
 
-List top cryptocurrencies by volume:
-
-```bash
-python main.py --top
-```
-
 Visualize cryptocurrency correlations:
 
 ```bash
@@ -161,128 +165,183 @@ Analyze a trained model:
 python main.py --analyze --symbol BTCUSDT
 ```
 
-Optimize configuration for a specific cryptocurrency:
+### Using Futures Data
+
+To enable futures market data (Open Interest, Funding Rates, etc.):
 
 ```bash
-python main.py --optimize balanced --symbol BTCUSDT
+python run_with_futures.py --interactive
 ```
 
-### Example Usage
+This script:
+1. Patches the Binance API to handle futures market data requirements
+2. Updates the config to enable futures data sources
+3. Runs the main program with futures data enabled
 
-The repository includes an `example_usage.py` file that demonstrates different ways to use the system:
+### Using Dynamic Graphs
+
+To enable dynamic graph structures that evolve over time:
 
 ```bash
-python example_usage.py
+python enable_dynamic_graph.py --enable
+python main.py --interactive
 ```
 
-This will:
-1. Train a model with basic settings
-2. Explore available features for a cryptocurrency
-3. Compare model performance with and without futures data
-4. Fetch and visualize different types of futures market data
+To disable dynamic graphs:
 
-### Configuration
+```bash
+python enable_dynamic_graph.py --disable
+```
 
-The default configuration is stored in `config.json`. You can modify this file to change parameters like:
-- Training epochs, batch size, learning rate
-- Model architecture parameters
-- Feature selection options
-- Visualization settings
-- Binance API parameters
+## ⚙️ Configuration
 
-You can optimize the configuration for specific cryptocurrencies using the `--optimize` flag with different targets:
-- `accuracy`: Prioritizes prediction accuracy (more complex model, longer training time)
-- `speed`: Prioritizes fast training and inference (simpler model)
-- `balanced`: Balances training speed and prediction accuracy
+The system is highly configurable through the `config.json` file. Key settings include:
 
-## Model Architecture
+### Model Configuration
 
-The Graph Convolutional LSTM architecture combines spatial and temporal modeling for cryptocurrency price prediction:
+```json
+"model": {
+    "dropout": 0.3,
+    "l2_reg": 1e-5,
+    "use_attention": true,
+    "graph_construction": "correlation",
+    "correlation_threshold": 0.5,
+    "graph_convolution_type": "standard",
+    "feature_categories": ["ohlcv", "technical", "futures"],
+    "use_dynamic_graph": true,
+    "scaler_type": "minmax"
+}
+```
 
-### Key Components:
+### Features Configuration
 
-1. **Graph Construction**:
-   - Cryptocurrencies are represented as nodes in a graph
-   - Edges are formed based on price correlations or other relationship metrics
-   - Edge weights represent the strength of relationships between cryptocurrencies
+```json
+"features": {
+    "use_futures_data": true,
+    "use_open_interest": true,
+    "use_funding_rates": true,
+    "use_long_short_ratio": true,
+    "use_taker_buy_sell_ratio": true,
+    "use_order_book": false,
+    "use_advanced_features": true,
+    "technicals": {
+        "use_all": true,
+        "moving_averages": true,
+        "oscillators": true,
+        "volatility": true,
+        "momentum": true
+    }
+}
+```
 
-2. **Spatial Processing (Graph Convolution)**:
-   - Graph Convolutional layers capture the spatial relationships between cryptocurrencies
-   - Chebyshev graph convolutions for higher-order graph relationships
-   - Spatial attention mechanism to focus on the most important node connections
+### Prediction Configuration
 
-3. **Temporal Processing (LSTM)**:
-   - Graph-augmented LSTM layers process time series data for each cryptocurrency
-   - Temporal attention mechanism to focus on the most important time steps
-   - Residual connections to improve gradient flow during training
+```json
+"prediction": {
+    "create_visualization": true,
+    "prediction_days": 182,
+    "advanced_visualization": true,
+    "confidence_intervals": true,
+    "export_formats": ["png", "html", "csv", "json"]
+}
+```
 
-4. **Feature Integration**:
-   - Integrates spot and futures market data for comprehensive market insight
-   - Multi-layer feature extraction with advanced regularization
-   - Adaptive learning components to handle market regime changes
+## 🧪 Model Architecture
 
-5. **Advanced Visualization**:
-   - Interactive Plotly-based visualizations
-   - Confidence interval representation for prediction uncertainty
-   - Historical comparison and trend analysis
+The Spatial-Temporal Graph Neural Network combines graph-based spatial modeling with sequential temporal modeling:
 
-The model takes in multiple features including:
-- Price data (Open, High, Low, Close)
-- Volume data
-- Technical indicators (Moving Averages, RSI, MACD, Bollinger Bands)
-- Futures market data (Open Interest, Funding Rates, etc.)
-- Market-wide signals from related cryptocurrencies
+### Graph Construction
 
-## Performance Optimization
+- Cryptocurrencies are modeled as nodes in a graph
+- Edges represent relationships (correlations or other metrics)
+- Dynamic graphs update edge weights over time to capture evolving relationships
 
-The model includes several optimizations to prevent underfitting and overfitting:
+### Spatial-Temporal Processing
 
-1. **Early Stopping**: Prevents overfitting by stopping training when validation loss stops improving
-2. **Learning Rate Scheduling**: Cosine annealing with warm restarts for better convergence
-3. **Gradient Clipping**: Prevents exploding gradients
-4. **L2 Regularization**: Penalizes large weights to prevent overfitting
-5. **Dropout**: Applied at multiple layers with different rates
-6. **Attention Mechanisms**: Helps the model focus on relevant parts of the input sequence and graph
-7. **Graph Structure Regularization**: Uses graph structure to constrain the model and reduce overfitting
+1. **Graph Convolutional Layers**
+   - Capture market structure and inter-cryptocurrency effects
+   - Apply attention mechanisms to focus on important relationships
+   - Support both standard and Chebyshev graph convolutions
 
-## Evaluation Metrics
+2. **LSTM Temporal Processing**
+   - Process the time dimension of cryptocurrency data
+   - Maintain long-term memory of market conditions
+   - Graph-augmented cell states incorporate structural information
 
-The system evaluates predictions using multiple metrics:
+3. **Multi-Layer Feature Integration**
+   - Combines outputs from spatial and temporal branches
+   - Applies residual connections for better gradient flow
+   - Regularization through dropout and L2 penalty
 
-1. **Mean Absolute Error (MAE)**: Average absolute difference between predicted and actual prices
-2. **Root Mean Squared Error (RMSE)**: Square root of the average squared differences
-3. **Mean Absolute Percentage Error (MAPE)**: Percentage difference between predicted and actual prices
-4. **Directional Accuracy**: Percentage of correct predictions of price movement direction
-5. **Rolling Window Metrics**: Evaluation across different time horizons (1 week, 1 month, 3 months, 6 months)
+## 📈 Example Outputs
 
-## Example Output
+The system produces several outputs for each prediction:
 
-When making predictions, the system generates:
+### Price Predictions
 
-1. A DataFrame with predicted open and close prices for the next 6 months
-2. Interactive and static visualizations showing:
-   - Historical prices and future predictions
-   - Confidence intervals for predictions
-   - Moving averages and technical indicators
-   - Price volatility analysis
-   - Cryptocurrency relationship graph
-   - Futures market indicators
-3. A JSON summary with:
-   - Overall price trend analysis
-   - Milestone predictions (1 week, 1 month, 3 months, 6 months)
-   - Prediction confidence metrics
-   - Detailed daily forecasts
+A DataFrame containing open and close price predictions for the next 6 months:
 
-## Contributing
+```
+                   Date  Predicted Open  Predicted Close  Change_From_Last
+0  2025-03-12 00:00:00       3531.45        3568.29           2.45
+1  2025-03-13 00:00:00       3565.78        3602.13           3.45
+...
+180 2025-09-08 00:00:00      5123.67        5245.89          50.67
+181 2025-09-09 00:00:00      5267.34        5389.56          54.77
+```
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### Visualization
 
-## License
+Interactive charts showing:
+- Historical and predicted prices
+- Confidence intervals
+- Moving averages
+- Key support/resistance levels
+- Market volatility
+- Prediction milestones (1 month, 3 months, 6 months)
+
+### Analysis
+
+- Cryptocurrency relationship network visualization
+- Feature importance analysis
+- Prediction confidence metrics
+- Market regime identification
+
+## 🔗 Integration with Trading Systems
+
+The prediction outputs can be integrated with trading systems through:
+
+1. **JSON Output Files**: Structured prediction data for algorithmic trading
+2. **CSV Exports**: Tabular data for spreadsheet-based analysis
+3. **Webhook Support**: Send predictions to external systems
+4. **Visualization Exports**: HTML interactive dashboards for manual review
+
+## 📚 Requirements
+
+Key dependencies include:
+- PyTorch 1.9+
+- Networkx 2.6+
+- Pandas 1.3+
+- Numpy 1.20+
+- Matplotlib 3.4+
+- Plotly 5.5+
+- Seaborn 0.11+
+- Scikit-learn 0.24+
+- Requests 2.26+
+- Websockets 10.0+
+
+Full requirements are listed in `requirements.txt`.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit issues or pull requests.
+
+## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
-- Research on Graph Neural Networks for time series prediction
-- PyTorch team for the excellent deep learning framework
-- Binance for providing the WebSocket API and futures market data
+- PyTorch team for their excellent deep learning framework
+- Binance for providing the API and market data
+- Research in Graph Neural Networks for time series forecasting
